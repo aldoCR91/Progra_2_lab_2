@@ -50,12 +50,26 @@ namespace Lab._2___Archivos_TXT_y_XML
                 }
                 else
                 {
-                    
+                   // toda la funcionalidad requerida
+                   BLL.ArchivosTXT archivosTXT = new BLL.ArchivosTXT();
+                   List<BLL.Compra> compras = archivosTXT.Leer(this.tbRuta.Text.Trim());
+                    foreach (var compra in compras)
+                    {
+                        ListViewItem listViewItem = new ListViewItem();
+                        listViewItem.SubItems.Add(compra.Nombre);
+                        listViewItem.SubItems.Add(compra.Apellido);
+                        listViewItem.SubItems.Add(compra.Provincia);
+                        listViewItem.SubItems.Add(compra.Email);
+                        listViewItem.SubItems.Add(compra.Identificacion);
+                        listViewItem.SubItems.Add(compra.Monto.ToString());
+
+                        lvwCompras.Items.Insert(listViewItem.Index, listViewItem);
+                    }
                 }
             }
             catch (Exception ex)
             {
-            
+                MessageBox.Show(ex.Message, "Carga de compras", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
