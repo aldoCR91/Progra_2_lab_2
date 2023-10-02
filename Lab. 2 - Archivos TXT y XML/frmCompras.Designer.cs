@@ -52,7 +52,7 @@
             groupBox1.Dock = DockStyle.Top;
             groupBox1.Location = new Point(0, 0);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(548, 81);
+            groupBox1.Size = new Size(575, 81);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "groupBox1";
@@ -102,7 +102,7 @@
             lvwCompras.GridLines = true;
             lvwCompras.Location = new Point(0, 81);
             lvwCompras.Name = "lvwCompras";
-            lvwCompras.Size = new Size(548, 369);
+            lvwCompras.Size = new Size(575, 369);
             lvwCompras.TabIndex = 1;
             lvwCompras.UseCompatibleStateImageBehavior = false;
             lvwCompras.View = View.Details;
@@ -136,12 +136,13 @@
             // 
             colMonto.Text = "Monto";
             colMonto.TextAlign = HorizontalAlignment.Right;
+            colMonto.Width = 80;
             // 
             // frmCompras
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(548, 450);
+            ClientSize = new Size(575, 450);
             Controls.Add(lvwCompras);
             Controls.Add(groupBox1);
             Name = "frmCompras";

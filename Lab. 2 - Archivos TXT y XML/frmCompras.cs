@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BLL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -42,28 +43,31 @@ namespace Lab._2___Archivos_TXT_y_XML
             {
                 if (string.IsNullOrEmpty(this.tbRuta.Text.Trim()))
                 {
-                    MessageBox.Show("Favor seleccionar el archivo a cargar", "Carga de compras", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Favor seleccionar ruta del archivo", "Carga de compras", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
-                else if (File.Exists(this.tbRuta.Text.Trim()))
+                else if (!File.Exists(this.tbRuta.Text.Trim()))
                 {
-                    MessageBox.Show("Favor verificar ruta del archivo", "Carga de compras", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Archivo no encontrado", "Carga de compras", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
-                   // toda la funcionalidad requerida
-                   BLL.ArchivosTXT archivosTXT = new BLL.ArchivosTXT();
-                   List<BLL.Compra> compras = archivosTXT.Leer(this.tbRuta.Text.Trim());
+                    // toda la funcionalidad requerida
+                    BLL.ArchivosTXT archivosTXT = new BLL.ArchivosTXT();
+
+                    List<BLL.Compra> compras = archivosTXT.Leer(this.tbRuta.Text.Trim());
+
                     foreach (var compra in compras)
                     {
-                        ListViewItem listViewItem = new ListViewItem();
+                        // Creamos un listViewItem para agregar los datos
+                        ListViewItem listViewItem = new ListViewItem(compra.Identificacion);
+                        //listViewItem.SubItems.Add(compra.Identificacion);
                         listViewItem.SubItems.Add(compra.Nombre);
                         listViewItem.SubItems.Add(compra.Apellido);
                         listViewItem.SubItems.Add(compra.Provincia);
                         listViewItem.SubItems.Add(compra.Email);
-                        listViewItem.SubItems.Add(compra.Identificacion);
                         listViewItem.SubItems.Add(compra.Monto.ToString());
 
-                        lvwCompras.Items.Insert(listViewItem.Index, listViewItem);
+                        lvwCompras.Items.Add(listViewItem);
                     }
                 }
             }
